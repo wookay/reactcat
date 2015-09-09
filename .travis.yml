@@ -1,0 +1,15 @@
+language: node_js
+sudo: false
+matrix:
+  allow_failures:
+    - node_js: "0.13"
+node_js:
+  - "iojs"
+  - "0.13"
+after_success:
+  - "npm run devtest"
+  - "npm run nyan"
+  - "npm run coverage"
+  - "cat artifacts/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+notifications:
+  email: false
